@@ -36,9 +36,14 @@ function MisPrestamos() {
         <p>No tienes préstamos registrados.</p>
       )}
 
+
       {prestamos.map((prestamo) => (
-        <div key={prestamo.id}>
-          <h2>{prestamo.libro?.titulo}</h2>
+        <div key={prestamo.loanId}>
+          <h2>{prestamo.libro}</h2>
+
+          <p>Autor: {prestamo.autor}</p>
+
+          <p>ISBN: {prestamo.isbn}</p>
 
           <p>Fecha del préstamo: {prestamo.fechaPrestamo}</p>
 
@@ -46,9 +51,12 @@ function MisPrestamos() {
             Fecha de devolución: {prestamo.fechaDevolucionEstimada}
           </p>
 
-          <p>Estado: {prestamo.estado}</p>
+          <p>Estado: {prestamo.estatus}</p>
+
+          {prestamo.vencido && <p>Préstamo vencido</p>}
         </div>
       ))}
+
     </div>
   );
 }
