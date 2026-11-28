@@ -1,0 +1,342 @@
+.loan-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: rgba(28, 7, 15, 0.48);
+  backdrop-filter: blur(2.5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  animation: modalFadeIn 0.18s ease-out;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.loan-modal-card {
+  width: 100%;
+  max-width: 500px;
+  background: #fdf5f7;
+  border-radius: 26px;
+  padding: 26px 32px 28px;
+  box-shadow: 0 24px 60px rgba(24, 6, 14, 0.3);
+  text-align: left;
+  font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+  animation: modalPopIn 0.2s ease-out;
+}
+
+@keyframes modalPopIn {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Header */
+.loan-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 16px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #eedbe2;
+}
+
+.loan-modal-heading {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.loan-modal-icon {
+  width: 24px;
+  height: 24px;
+  color: #981035;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loan-modal-icon svg {
+  width: 24px;
+  height: 24px;
+}
+
+.loan-modal-title {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #18181b;
+}
+
+.loan-modal-close {
+  background: transparent;
+  border: none;
+  font-size: 1.65rem;
+  line-height: 1;
+  color: #71717a;
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: 8px;
+  transition: background-color 0.15s, color 0.15s;
+}
+
+.loan-modal-close:hover:not(:disabled) {
+  background: rgba(152, 16, 53, 0.08);
+  color: #981035;
+}
+
+/* Detalle del libro */
+.loan-book-preview {
+  display: flex;
+  align-items: flex-start;
+  gap: 22px;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #eedbe2;
+}
+
+.loan-book-cover-wrap {
+  flex-shrink: 0;
+}
+
+.loan-book-cover {
+  width: 118px;
+  height: 164px;
+  object-fit: cover;
+  border-radius: 8px;
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.18);
+  display: block;
+}
+
+.loan-book-cover-fallback {
+  width: 118px;
+  height: 164px;
+  border-radius: 8px;
+  padding: 12px 10px;
+  background: linear-gradient(155deg, #981035 0%, #4b0719 100%);
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.18);
+  overflow: hidden;
+}
+
+.loan-cover-cat {
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  opacity: 0.85;
+}
+
+.loan-cover-title {
+  font-size: 0.78rem;
+  line-height: 1.25;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.loan-cover-author {
+  font-size: 0.65rem;
+  opacity: 0.82;
+}
+
+.loan-book-details {
+  flex: 1;
+  min-width: 0;
+}
+
+.loan-book-title {
+  margin: 0;
+  font-size: 1.38rem;
+  font-weight: 700;
+  color: #18181b;
+  line-height: 1.25;
+}
+
+.loan-book-author {
+  margin: 4px 0 10px;
+  font-size: 0.94rem;
+  color: #52525b;
+}
+
+.loan-stock-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.loan-stock-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.loan-stock-ok {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.loan-stock-ok .loan-stock-dot {
+  background: #16a34a;
+}
+
+.loan-stock-out {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.loan-stock-out .loan-stock-dot {
+  background: #dc2626;
+}
+
+.loan-book-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.88rem;
+  color: #3f3f46;
+}
+
+.loan-book-meta p {
+  margin: 0;
+}
+
+.loan-book-meta span {
+  font-weight: 500;
+  color: #52525b;
+}
+
+/* Formulario */
+.loan-modal-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.loan-date-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #27272a;
+  margin-bottom: 10px;
+}
+
+.loan-date-label svg {
+  width: 18px;
+  height: 18px;
+  color: #981035;
+}
+
+.loan-date-input {
+  width: 100%;
+  height: 48px;
+  padding: 0 18px;
+  border: 1px solid #ead9df;
+  border-radius: 9999px;
+  background: #ffffff;
+  color: #27272a;
+  font-size: 0.94rem;
+  font-family: inherit;
+  outline: none;
+  box-shadow: 0 4px 12px rgba(45, 10, 22, 0.04);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.loan-date-input:focus {
+  border-color: #9e1438;
+  box-shadow: 0 0 0 3px rgba(158, 20, 56, 0.14);
+}
+
+.loan-modal-feedback {
+  margin: 12px 0 0;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+}
+
+.loan-modal-error {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #b91c1c;
+}
+
+.loan-modal-success {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  color: #15803d;
+}
+
+.loan-confirm-btn {
+  margin-top: 18px;
+  width: 100%;
+  height: 48px;
+  border: none;
+  border-radius: 9999px;
+  background: linear-gradient(90deg, #a4133c 0%, #830b2c 100%);
+  color: #ffffff;
+  font-size: 0.98rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 10px 24px rgba(137, 11, 47, 0.28);
+  transition: transform 0.15s ease, opacity 0.2s ease;
+}
+
+.loan-confirm-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  opacity: 0.96;
+}
+
+.loan-confirm-btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.loan-cancel-btn {
+  margin: 14px auto 0;
+  background: transparent;
+  border: none;
+  color: #9e1438;
+  font-size: 0.92rem;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 4px 12px;
+}
+
+.loan-cancel-btn:hover:not(:disabled) {
+  text-decoration: underline;
+}
+
+@media (max-width: 520px) {
+  .loan-modal-card {
+    padding: 22px 20px;
+  }
+
+  .loan-book-preview {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 14px;
+  }
+}

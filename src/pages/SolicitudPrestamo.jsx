@@ -1,58 +1,41 @@
-import { useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
-import { solicitarPrestamo } from "../services/loanService";
+import { useState, useEffect } from "react";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
+import { obtenerLibros } from "../services/bookService";
+import ModalSolicitudPrestamo from "../components/ModalSolicitudPrestamo";
 
 function SolicitudPrestamo() {
   const { id } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
 
-  const [fechaDevolucion, setFechaDevolucion] = useState("");
-  const [cargando, setCargando] = useState(false);
+  const [libro, setLibro] = useState(location.state?.libro || null);
+  const [cargando, setCargando] = useState(!location.state?.libro);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  useEffect(() => {
+    if (libro) return;
 
-    if (!fechaDevolucion) {
-      alert("Selecciona una fecha de devolución");
-      return;
-    }
+    const cargarLibro = async () => {
+      try {
+        const lista = await obtenerLibros();
+        const libros = Array.isArray(lista) ? lista : lista?.books || [];
+        const encontrado = libros.find((b) => String(b.id) === String(id));
+        setLibro(encontrado || null);
+      } finally {
+        setCargando(false);
+      }
+    };
 
-    try {
-      setCargando(true);
+    cargarLibro();
+  }, [id, libro]);
 
-      await solicitarPrestamo({
-        bookId: id,
-        fechaDevolucionEstimada: fechaDevolucion,
-      });
-
-      alert("Solicitud de préstamo enviada correctamente");
-      navigate("/mis-prestamos");
-
-    } catch (error) {
-      alert(error.message);
-    } finally {
-      setCargando(false);
-    }
-  };
+  if (cargando) return <p style={{ padding: "2rem" }}>Cargando libro...</p>;
+  if (!libro) return <p style={{ padding: "2rem" }}>Libro no encontrado.</p>;
 
   return (
-    <div>
-      <h1>Solicitar préstamo</h1>
-
-      <form onSubmit={handleSubmit}>
-        <label>Fecha estimada de devolución</label>
-
-        <input
-          type="date"
-          value={fechaDevolucion}
-          onChange={(e) => setFechaDevolucion(e.target.value)}
-        />
-
-        <button type="submit" disabled={cargando}>
-          {cargando ? "Enviando..." : "Confirmar préstamo"}
-        </button>
-      </form>
-    </div>
+    <ModalSolicitudPrestamo
+      libro={libro}
+      onClose={() => navigate("/catalogo")}
+    />
   );
 }
 
